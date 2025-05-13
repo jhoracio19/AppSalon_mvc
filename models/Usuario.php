@@ -45,9 +45,20 @@ class Usuario  extends ActiveRecord{
     } else if (!ctype_digit($this->telefono)) {
         self::$alertas['error'][] = 'El Teléfono solo debe contener números';
     }
-    if (!$this->email) {
-        self::$alertas['error'][] = 'El Email es Obligatorio';
+if (!$this->email) {
+    self::$alertas['error'][] = 'El Email es Obligatorio';
+} else if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+    self::$alertas['error'][] = 'El Email no tiene un formato válido';
+} else {
+    // Obtener el dominio del correo
+    $dominioPermitido = ['gmail.com', 'hotmail.com', 'outlook.com'];
+    $partesCorreo = explode('@', $this->email);
+    
+    if (count($partesCorreo) !== 2 || !in_array(strtolower($partesCorreo[1]), $dominioPermitido)) {
+        self::$alertas['error'][] = 'Solo se permiten correos de Gmail, Hotmail u Outlook';
     }
+}
+
     if (!$this->password) {
         self::$alertas['error'][] = 'El Password es Obligatorio';
     } else if (strlen($this->password) < 6) {
