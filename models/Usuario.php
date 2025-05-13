@@ -31,33 +31,32 @@ class Usuario  extends ActiveRecord{
     }
 
     //Mensajes de Validacion para la creacion de una cuenta
-    public function validarNuevaCuenta(){
-        if(!$this->nombre){
-            self::$alertas['error'][] = 'El Nombre es Obligatorio';
-        }
-        if(!$this->apellido){
-            self::$alertas['error'][] = 'El Apellido es Obligatorio';
-        }
-        if(!$this->telefono){
-            self::$alertas['error'][] = 'El Teléfono es Obligatorio';
-        }
-        if(strlen($this->telefono) < 10){
-            self::$alertas['error'][] = 'El Teléfono debe ser de al menos 10 caracteres';
-        }
-        if(!$this->email){
-            self::$alertas['error'][] = 'El Email es Obligatorio';
-        }
-        if(!$this->password){
-            self::$alertas['error'][] = 'El Password es Obligatorio';
-        }
-        if(strlen($this->password) < 6){
-            self::$alertas['error'][] = 'El Password debe ser de al menos 6 caracteres';
-        }
-
-
-
-        return self::$alertas;
+    public function validarNuevaCuenta() {
+    if (!$this->nombre) {
+        self::$alertas['error'][] = 'El Nombre es Obligatorio';
     }
+    if (!$this->apellido) {
+        self::$alertas['error'][] = 'El Apellido es Obligatorio';
+    }
+    if (!$this->telefono) {
+        self::$alertas['error'][] = 'El Teléfono es Obligatorio';
+    } else if (strlen($this->telefono) !== 10) {
+        self::$alertas['error'][] = 'El Teléfono debe tener exactamente 10 dígitos';
+    } else if (!ctype_digit($this->telefono)) {
+        self::$alertas['error'][] = 'El Teléfono solo debe contener números';
+    }
+    if (!$this->email) {
+        self::$alertas['error'][] = 'El Email es Obligatorio';
+    }
+    if (!$this->password) {
+        self::$alertas['error'][] = 'El Password es Obligatorio';
+    } else if (strlen($this->password) < 6) {
+        self::$alertas['error'][] = 'El Password debe ser de al menos 6 caracteres';
+    }
+
+    return self::$alertas;
+}
+
 
     public function validarLogin(){
         if(!$this->email){
