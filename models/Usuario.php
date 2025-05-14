@@ -99,7 +99,7 @@ public function validarLogin(){
 
     public function validarEmail(){
         if(!$this->email){
-            self::$alertas['error'][] = 'El Email es Obligatorio';
+            self::$alertas['error'][] = 'El Email es Obligatorio o El Formato es Inválido';
         }
 
         return self::$alertas;
