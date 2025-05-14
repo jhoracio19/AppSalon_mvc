@@ -320,53 +320,45 @@ function mostrarResumen(){
 }
 
 async function reservarCita() {
-    
-    const { nombre, fecha, hora, servicios, id } = cita;
+    const { nombre, fecha, hora, servicios, id } = cita;
 
-    const idServicios = servicios.map( servicio => servicio.id );
-    // console.log(idServicios);
+    // Convertir el array de servicios a string separado por comas (como el backend lo espera)
+    const idServicios = servicios.map(servicio => servicio.id).join(',');
 
     const datos = new FormData();
-    
     datos.append('fecha', fecha);
     datos.append('hora', hora);
-    datos.append('usuarioId', id);
-    datos.append('servicios', idServicios);
-
-    // console.log([...datos]);
+    datos.append('usuarioId', id);  // Asegúrate que coincide con $_POST['usuarioId'] en PHP
+    datos.append('servicios', idServicios);  // Ahora es un string "1,2,3"
 
     try {
-        // Petición hacia la api
-        const url = '/api/cita'
+        const url = '/api/cita';
         const respuesta = await fetch(url, {
             method: 'POST',
             body: datos
         });
 
         const resultado = await respuesta.json();
-        console.log(resultado);
-        
+
+        if(!respuesta.ok) {
+            throw new Error(resultado.error || 'Error al reservar cita');
+        }
+
         if(resultado.resultado) {
-            Swal.fire({
+            await Swal.fire({
                 icon: 'success',
                 title: 'Cita Creada',
                 text: 'Tu cita fue creada correctamente',
                 button: 'OK'
-            }).then( () => {
-                setTimeout(() => {
-                    window.location.reload();
-                }, 3000);
-            })
+            });
+            window.location.reload();
         }
     } catch (error) {
+        console.error('Error en reservarCita:', error);
         Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Hubo un error al guardar la cita'
-        })
+            text: error.message || 'Hubo un error al guardar la cita'
+        });
     }
-
-    
-    // console.log([...datos]);
-
 }
