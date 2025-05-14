@@ -69,16 +69,33 @@ if (!$this->email) {
 }
 
 
-    public function validarLogin(){
-        if(!$this->email){
-            self::$alertas['error'][] = 'El Email es Obligatorio';
+public function validarLogin(){
+    if(!$this->email){
+        self::$alertas['error'][] = 'El Email es Obligatorio';
+    } else {
+        // Validar que el correo tenga un formato válido
+        if(!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+            self::$alertas['error'][] = 'El formato del Email no es válido';
+        } else {
+            // Extraer dominio del correo
+            $dominio = substr(strrchr($this->email, "@"), 1);
+            
+            // Lista de dominios permitidos
+            $dominiosPermitidos = ['gmail.com', 'hotmail.com', 'outlook.com', 'live.com', 'hotmail.es', 'outlook.es'];
+            
+            // Verificar si el dominio está en la lista de permitidos
+            if(!in_array($dominio, $dominiosPermitidos)) {
+                self::$alertas['error'][] = 'El Email debe ser de tipo Gmail, Hotmail u Outlook';
+            }
         }
-        if(!$this->password){
-            self::$alertas['error'][] = 'El Password es Obligatorio';
-        }
-
-        return self::$alertas;
     }
+    
+    if(!$this->password){
+        self::$alertas['error'][] = 'El Password es Obligatorio';
+    }
+
+    return self::$alertas;
+}
 
     public function validarEmail(){
         if(!$this->email){
