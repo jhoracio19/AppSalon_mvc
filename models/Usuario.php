@@ -55,7 +55,7 @@ if (!$this->email) {
     $partesCorreo = explode('@', $this->email);
     
     if (count($partesCorreo) !== 2 || !in_array(strtolower($partesCorreo[1]), $dominioPermitido)) {
-        self::$alertas['error'][] = 'Solo se permiten correos de Gmail, Hotmail u Outlook';
+        self::$alertas['error'][] = 'El Email debe ser de tipo Gmail, Hotmail u Outlook';
     }
 }
 
@@ -99,7 +99,7 @@ public function validarLogin(){
 
     public function validarEmail(){
         if(!$this->email){
-            self::$alertas['error'][] = 'El Email es Obligatorio o El Formato es Inválido';
+            self::$alertas['error'][] = 'El Email debe ser de tipo Gmail, Hotmail u Outlook';
         }
 
         return self::$alertas;
