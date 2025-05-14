@@ -62,7 +62,6 @@ class Email {
         try {
             // Crear el objeto de Email
             $mail = new PHPMailer(true); // true habilita excepciones
-            $mail->SMTPDebug = 2; // Activa debug temporalmente
             $mail->isSMTP();
             $mail->Host = $_ENV['EMAIL_HOST'];
             $mail->SMTPAuth = true;
