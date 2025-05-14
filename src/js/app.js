@@ -115,7 +115,7 @@ function paginaSiguiente() {
 async function consultarAPI() {
 
     try {
-        const url = 'http://localhost:3000/api/servicios';
+        const url = '/api/servicios';
         const resultado = await fetch(url);
         const servicios = await resultado.json();
         mostrarServicios(servicios);
@@ -127,7 +127,7 @@ async function consultarAPI() {
 
 function mostrarServicios(servicios) {
     servicios.forEach( servicio => {
-        const { id, nombre, precio } = servicio;
+        const {id, nombre, precio } = servicio;
 
         const nombreServicio = document.createElement('P');
         nombreServicio.classList.add('nombre-servicio');
@@ -255,7 +255,7 @@ function mostrarResumen() {
     } 
 
     // Formatear el div de resumen
-    const { nombre, fecha, hora, servicios } = cita;
+    const { nombre, fecha, hora, servicios} = cita;
 
 
 
@@ -322,7 +322,7 @@ function mostrarResumen() {
 
 async function reservarCita() {
     
-    const { nombre, fecha, hora, servicios, id } = cita;
+    const { nombre, fecha, hora, servicios, id} = cita;
 
     const idServicios = servicios.map( servicio => servicio.id );
     // console.log(idServicios);
@@ -338,7 +338,7 @@ async function reservarCita() {
 
     try {
         // Petición hacia la api
-        const url = 'http://localhost:3000/api/citas'
+        const url = '/api/citas'
         const respuesta = await fetch(url, {
             method: 'POST',
             body: datos
