@@ -329,7 +329,7 @@ async function reservarCita() {
     const datos = new FormData();
     
     datos.append('fecha', fecha);
-    datos.append('hora', hora );
+    datos.append('hora', hora);
     datos.append('usuarioId', id);
     datos.append('servicios', idServicios);
 
