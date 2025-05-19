@@ -33,5 +33,5 @@
 <div class="acciones">
     <a href="/crear-cuenta">Aún no tienes una cuenta? Crear una</a>
     <a href="/olvide">Olvidaste tu password?</a>
-    <a href="https://drive.google.com/file/d/1dPa6Jz3J53QOQCvhMK_V4G8NzdJ-AbZ8/view?usp=sharing" target="_blank">Mapa de navegación</a>
+    <a href="https://drive.google.com/file/d/1kYfwbdw32IHyFru1ni9-wN8AAHL-U7Wx/view?usp=sharing" target="_blank">Mapa de navegación</a>
 </div>
