@@ -33,5 +33,5 @@
 <div class="acciones">
     <a href="/crear-cuenta">Aún no tienes una cuenta? Crear una</a>
     <a href="/olvide">Olvidaste tu password?</a>
-    <a href="https://drive.google.com/file/d/1kYfwbdw32IHyFru1ni9-wN8AAHL-U7Wx/view?usp=sharing" target="_blank">Mapa de navegación</a>
+    <a href="https://lucid.app/lucidspark/3edeb27d-5f36-4491-9133-eccf2ffc861c/edit?viewport_loc=3162%2C424%2C5338%2C2717%2C0_0&invitationId=inv_c554a911-266d-4565-8eeb-74cff6635ef3" target="_blank">Mapa de navegación</a>
 </div>
