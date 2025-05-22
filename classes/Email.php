@@ -29,7 +29,7 @@ class Email {
             $mail->Password = $_ENV['EMAIL_PASS'];
             
             // Configurar el remitente
-            $mail->setFrom('notificaciones@jhoracio19.pro', 'AppSalon');
+            $mail->setFrom('noreply@jhoracio19.pro', 'AppSalon');
             
             // Añadir el destinatario (el email del usuario)
             $mail->addAddress($this->email, $this->nombre);
